@@ -19,7 +19,7 @@
  * Encodes mailto links to hinder bots from scraping email addresses.
  * @author Colin Fletcher
  * @copyright (C) Colin Fletcher 2011
- * @package Mailto
+ * @package States
  * @version 1.0
  */
 	class States extends CApplicationComponent {

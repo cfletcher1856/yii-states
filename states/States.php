@@ -16,11 +16,10 @@
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *
- * Encodes mailto links to hinder bots from scraping email addresses.
  * @author Colin Fletcher
  * @copyright (C) Colin Fletcher 2011
  * @package States
- * @version 1.0
+ * @version 1.1
  */
 	class States extends CApplicationComponent {
 	
@@ -28,7 +27,7 @@
 		 * Based on USPS definitions
 		 * @var array
 		 */
-		private static $us = array(
+		protected static $us = array(
 			"AL" => "Alabama",
 			"AK" => "Alaska",
 			"AZ" => "Arizona",
@@ -86,7 +85,7 @@
 		 * Based on USPS definitions
 		 * @var array
 		 */
-		private static $us_territories = array(
+		protected static $us_territories = array(
 			"AS" => "American Samoa",
 			"GU" => "Guam",
 			"MP" => "Northern Marianas Islands",
@@ -104,7 +103,7 @@
 		 * Based on Canada Post definitions
 		 * @var array
 		 */
-		private static $canada = array(
+		protected static $canada = array(
 			"AB" => "Alberta",
 			"BC" => "British Columbia",
 			"MB" => "Manitoba",
@@ -205,5 +204,29 @@
 					self::$$k = $value;
 				} catch(Exception $e){}
 			}
-		}
+        }
+
+        public static function getStates(array $countries, $shortName = FALSE)
+        {
+            $return = array();
+            if(in_array('US', $countries)){
+                $return += self::$us;
+            }
+
+            if(in_array('CANADA', $countries)){
+                $return += self::$canada;
+            }
+
+            if(in_array('US TERRITORIES', $countries)){
+                $return += self::$us_territories;
+            }
+                                        
+            if($shortName){
+                foreach ($return as $key => &$value){
+                    $value = $key;
+                }
+            }
+
+            return $return;
+        }
 	}

@@ -30,6 +30,6 @@ echo States::render(array("US","canada","us territories"), $options, $htmlOption
 Active Form
 ===========
 
-$form->dropDownList($address, 'state', My_States::getStates(array("US"), true), 
+$form->dropDownList($address, 'state', States::getStates(array("US"), true),
        array('prompt' => 'State', 'class' => 'abc', 'style' => "width:75px;")),
 ```

@@ -148,6 +148,8 @@ class States extends CApplicationComponent
      * Renders the HTML code for the drop down list.
      * @param mixed $countries
      * @param array $options
+     * @param array $htmlOptions
+     * @throws CException
      */
     public static function render($countries, $options = array(), $htmlOptions = array())
     {
@@ -211,6 +213,11 @@ class States extends CApplicationComponent
         }
     }
 
+    /**
+     * @param array $countries The countries for which the list of states is required.
+     * @param bool $shortName Whether the state short name should be used (e.g. CA for California).
+     * @return array
+     */
     public static function getStates(array $countries, $shortName = FALSE)
     {
         $return = array();
